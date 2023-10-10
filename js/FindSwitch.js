@@ -333,7 +333,7 @@ function getImg(id) {
 
 $("#btnSel").click(function (){
     if(imgId!=null) {
-        imgId.style.display = "block";//图片显示
+        imgId.src=imgsrc;//图片显示
     }
     clearInterval(clock);
     Sel($("#name").val());
@@ -341,7 +341,7 @@ $("#btnSel").click(function (){
 
 $("#btnClear").click(function (){
     if(imgId!=null) {
-        imgId.style.display = "block";//图片显示
+        imgId.src=imgsrc;//图片显示
         imgId=null;
         imgsrc=null;
     }
