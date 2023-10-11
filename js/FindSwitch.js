@@ -196,6 +196,35 @@ var array = [
     {"id": "P6-11-B9", "imgName":"P6-11-B9"},
     {"id": "P6-12-B8", "imgName":"P6-12-B8"},
     {"id": "P6-12-B9", "imgName":"P6-12-B9"},
+    {"id": "P18-1-A1", "imgName":"P18-1-A1"},
+    {"id": "P18-1-A2", "imgName":"P18-1-A2"},
+    {"id": "P18-1-A3", "imgName":"P18-1-A3"},
+    {"id": "P18-1-A4", "imgName":"P18-1-A4"},
+    {"id": "P18-1-A5", "imgName":"P18-1-A5"},
+    {"id": "P18-1-A6", "imgName":"P18-1-A6"},
+    {"id": "P18-1-A7", "imgName":"P18-1-A7"},
+    {"id": "P18-1-B1", "imgName":"P18-1-B1"},
+    {"id": "P18-1-B3", "imgName":"P18-1-B3"},
+    {"id": "P18-1-B4", "imgName":"P18-1-B4"},
+    {"id": "P18-1-B5", "imgName":"P18-1-B5"},
+    {"id": "P18-1-B6", "imgName":"P18-1-B6"},
+    {"id": "P18-1-B7", "imgName":"P18-1-B7"},
+    {"id": "P18-1-C2", "imgName":"P18-1-C2"},
+    {"id": "P18-1-C4", "imgName":"P18-1-C4"},
+    {"id": "P18-1-C5", "imgName":"P18-1-C5"},
+    {"id": "P18-1-C6", "imgName":"P18-1-C6"},
+    {"id": "P18-1-C7", "imgName":"P18-1-C7"},
+    {"id": "P18-1-D1", "imgName":"P18-1-D1"},
+    {"id": "P18-1-D2", "imgName":"P18-1-D2"},
+    {"id": "P18-1-D3", "imgName":"P18-1-D3"},
+    {"id": "P18-1-D4", "imgName":"P18-1-D4"},
+    {"id": "P18-1-D5", "imgName":"P18-1-D5"},
+    {"id": "P18-1-D6", "imgName":"P18-1-D6"},
+    {"id": "P18-1-D7", "imgName":"P18-1-D7"},
+    {"id": "P18-1-E1", "imgName":"P18-1-E1"},
+    {"id": "P18-1-E3", "imgName":"P18-1-E3"},
+    {"id": "P18-1-E5", "imgName":"P18-1-E5"},
+    {"id": "P18-1-E7", "imgName":"P18-1-E7"},
     {"id": "P18-2-A1", "imgName":"P18-2-A1"},
     {"id": "P18-2-A3", "imgName":"P18-2-A3"},
     {"id": "P18-2-A4", "imgName":"P18-2-A4"},
@@ -312,6 +341,12 @@ var array = [
 var imgId;
 var clock;
 var imgsrc;
+
+$(function(){
+    load();
+})
+
+
 function Sel(name){
     var objectIndex = array.findIndex(object => object.id == name);
     id=array[objectIndex].imgName;
@@ -331,13 +366,37 @@ function getImg(id) {
     }
 }
 
-$("#btnSel").click(function (){
-    if(imgId!=null) {
-        imgId.src=imgsrc;//图片显示
+$("#btnReturn").click(function (){
+    try {
+        imgId.src = imgsrc;//图片显示
+        imgId = null;
+        imgsrc = null;
+        window.location.href = "Find.html";
+    }catch{
+        window.location.href = "Find.html";
     }
-    clearInterval(clock);
-    Sel($("#name").val());
 });
+
+$("#btnSel").click(function (){
+    var name=$("#name").val();
+    window.location.href="FindJumpSwitch.html?"+name;
+});
+
+
+
+function load(){
+    try {
+        var query = location.search.substring(1);
+        var vars = query.split("&");
+        if (imgId != null) {
+            imgId.src = imgsrc;//图片显示
+        }
+        clearInterval(clock);
+        Sel(vars[0]);
+    }catch{
+
+    }
+}
 
 $("#btnClear").click(function (){
     if(imgId!=null) {
